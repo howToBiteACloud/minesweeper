@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сапёр</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Young+Serif&display=swap" rel="stylesheet">
+</head> 
+<body>
+  <div class="main">
+    <header class="header">
+      Minesweeper
+    </header>
+
+    <div class="content">
+      <div class="aside">
+        <div class="form_radio_group" appearance="column">
+          <label class="form_radio_group-item">
+            <input id="radio-1" type="radio" name="radio" value="1" checked>
+            легкий
+          </label>
+          <label class="form_radio_group-item">
+            <input id="radio-2" type="radio" name="radio" value="2">
+            средний
+          </label>
+          <label class="form_radio_group-item">
+            <input id="radio-3" type="radio" name="radio" value="3">
+            эксперт
+          </label>
+          <label class="form_radio_group-item">
+            <input id="radio-special" type="radio" name="radio" value="special">
+            особый
+          </label>
+        </div>
+        <div class="special">
+            <label class="settings">
+              высота:
+              <input id="height" type="number" name="radio">
+            </label>
+            <label class="settings">
+              ширина:
+              <input id="width" type="number" name="radio">
+            </label>
+            <label class="settings">
+              мины:
+            <input id="mines" type="number" name="radio">
+            </label>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="caption">
+          <div id="bomb-counter"></div>
+          <div id="button"></div>
+          <div id="timer"></div>
+        </div>
+        <table>
+        <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <footer>
+    </footer>
+    </div>
+  <!-- пробник -->
+  <!-- конец пробника -->
+
+  <script src="minesweeper.js"></script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+:root {
+  --cell-size: 36px;
+  --border-size: 4px;
+  --percent-mixin-color: 35%;
+  --primary-color: #c7b98c;
+  --primary-color-light: color-mix(in srgb, var(--primary-color), #fff var(--percent-mixin-color));
+  --primary-color-dark: color-mix(in srgb, var(--primary-color), #000 var(--percent-mixin-color));
+  --secondary-color: #b2a478;
+  --counter-width: 24px;
+  --counter-height: 34px;
+
+  --sprite-number-size: 43.6px;
+
+  --background-size: var(--counter-width) var(--counter-height);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  width: max-content;
+  min-width: 100vw;
+  background-color: rgb(250, 240, 228);
+}
+
+.main {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.header {
+  font-family: 'Young Serif', serif;
+  color: rgb(139, 46, 46);
+  font-size: 35px;
+  height: 40px;
+  background-color: rgba(0,0,0,.3);
+  line-height: 40px;
+}
+
+.content {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: auto;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+}
+
+.form_radio_group {
+  font-size: 20px;
+  display: flex;
+  width: fit-content;
+  margin-left: 12px;
+  margin-right: 12px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.form_radio_group-item {
+  display: inline-block;
+  padding: 0px 15px;
+  border: 1px solid #999;
+  line-height: 34px;
+  user-select: none;
+  border-radius: inherit;
+  cursor: pointer;
+}
+
+.form_radio_group[appearance="column"] {
+  flex-direction: column;
+}
+
+.form_radio_group[appearance="column"] .form_radio_group-item {
+  flex-direction: column;
+  border-bottom: none;
+}
+
+.form_radio_group[appearance="column"] .form_radio_group-item:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.form_radio_group[appearance="column"] .form_radio_group-item:last-child {
+  border-radius: 0 0 8px 8px;
+  border-bottom: 1px solid #999;
+}
+
+.form_radio_group[appearance="row"] .form_radio_group-item {
+  border-right: none;
+}
+
+.form_radio_group[appearance="row"] .form_radio_group-item:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.form_radio_group[appearance="row"] .form_radio_group-item:last-child {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #999;
+}
+
+.form_radio_group input[type=radio] {
+  display: none;
+}
+
+/* Checked */
+.form_radio_group-item:has(> input[type=radio]:checked) {
+  background: #ffe0a6;
+}
+  
+/* Hover */
+.form_radio_group label:hover {
+  color: #666;
+}
+/* конец пробника */
+
+.special {
+  display: none;
+  flex-direction: column;
+  border: 1px solid;
+  padding: 8px;
+  margin-left: 12px;
+  margin-top: 12px;
+  border-radius: 8px;
+}
+
+.special_show {
+  display: flex;
+}
+
+.settings + .settings {
+  margin-top: 8px;
+}
+/* label:first-child  {
+  margin-top: 0;
+} */
+
+.container {
+  margin: auto;
+  border: 3px solid grey;
+  width: fit-content;
+}
+
+table {
+  border: 3px solid grey;
+  /* border-collapse: collapse; */
+  border-spacing: 0;
+}
+
+.caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+  background-color: #b2a478;
+  -webkit-box-shadow: 14px 11px 14px 6px rgba(120, 103, 36, 0.2) inset;
+  -moz-box-shadow: 14px 11px 14px 6px rgba(120, 103, 36, 0.2) inset;
+  box-shadow: 14px 11px 14px 6px rgba(120, 103, 36, 0.2) inset;
+}
+/* границы ячеек тела таблицы */
+td {
+  box-sizing: border-box;
+  /* border: 5px solid grey; */
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background-color: var(--primary-color);
+  /* -webkit-box-shadow: 9px 9px 13px 6px rgba(165, 160, 136, 0.57) inset; */
+  /* -moz-box-shadow: 9px 9px 13px 6px rgba(165, 160, 136, 0.57) inset; */
+  /* box-shadow: 9px 9px 13px 6px rgba(165, 160, 136, 0.57) inset; */
+  border-top: var(--border-size) solid var(--primary-color-light);
+  border-left: var(--border-size) solid var(--primary-color-light);
+  border-bottom: var(--border-size) solid var(--primary-color-dark);
+  border-right: var(--border-size) solid var(--primary-color-dark);
+}
+
+td:hover:not(.value):not(.bomb_clicked) {
+  /* border: none; */
+  background-color: var(--secondary-color);
+}
+
+.bomb {
+  background-image: url('asserts/mine.png');
+  background-size: contain;
+  border-top: 1px solid var(--primary-color-dark);
+  border-left: 1px solid var(--primary-color-dark);
+  border-bottom: none;
+  border-right: none;
+  background-repeat: no-repeat;
+  background-color: var(--secondary-color);
+}
+
+.bomb_clicked {
+  background-color: red;
+}
+
+.value {
+  font-family: 'Young Serif', serif;
+  font-size: 25px;
+  text-align: center;
+  background-color: var(--secondary-color);
+  border-top: 1px solid var(--primary-color-dark);
+  border-left: 1px solid var(--primary-color-dark);
+  border-bottom: none;
+  border-right: none;
+}
+
+.value_0 {
+  background-color: #b2a478;
+  border-top: 1px solid var(--primary-color-dark);
+  border-left: 1px solid var(--primary-color-dark);
+  border-bottom: none;
+  border-right: none;
+}
+
+.value_1::after {
+  content: '1';
+  color: rgb(32, 169, 160);
+}
+
+.value_2::after {
+  content: '2';
+  color: rgb(205, 30, 199);
+}
+
+.value_3::after {
+  content: '3';
+  color: rgb(63, 136, 26);
+}
+
+.value_4::after {
+  content: '4';
+  color: rgb(179, 22, 11);
+}
+
+.value_5::after {
+  content: '5';
+  color: rgb(222, 97, 35);
+}
+
+.value_6::after {
+  content: '6';
+  color: rgb(222, 150, 35);
+}
+
+.value_7::after {
+  content: '7';
+  color: rgb(222, 35, 79);
+}
+
+.value_8::after {
+  content: '8';
+  color: rgb(35, 35, 222);
+}
+
+
+#timer {
+  display: flex;
+}
+
+.timer {
+  width: var(--counter-width);
+  height: var(--counter-height);
+  background-repeat: no-repeat;
+  background-size: var(--background-size);
+}
+
+#bomb-counter {
+  display: flex;
+}
+
+.bomb-counter {
+  width: var(--counter-width);
+  height: var(--counter-height);
+  background-repeat: no-repeat;
+  background-size: var(--background-size);
+}
+
+.counter-value_0 {
+  background-image: url(asserts/0.png);
+}
+.counter-value_1 {
+  background-image: url(asserts/1.png);
+}
+.counter-value_2 {
+  background-image: url(asserts/2.png);
+}
+.counter-value_3 {
+  background-image: url(asserts/3.png);
+}
+.counter-value_4 {
+  background-image: url(asserts/4.png);
+}
+.counter-value_5 {
+  background-image: url(asserts/5.png);
+}
+.counter-value_6 {
+  background-image: url(asserts/6.png);
+}
+.counter-value_7 {
+  background-image: url(asserts/7.png);
+}
+.counter-value_8 {
+  background-image: url(asserts/8.png);
+}
+.counter-value_9 {
+  background-image: url(asserts/9.png);
+}
+.counter-value_- {
+  background-image: url(asserts/minus.png);
+  background-position-x: center;
+  background-size: 29px 61px;
+}
+.counter-value_ {
+  background-position: -488px -6px;
+}
+.counter-value_separator { 
+  background-image: url(asserts/separator.png);
+  width: 10px;
+  height: 34px;
+  background-size: 6px 20px;
+  background-position: center;
+}
+
+.flag {
+  background-image: url(asserts/flag.png);
+  background-size: contain;
+}
+
+.bad-flag {
+  background-color: rgba(205, 92, 92, 0.606);
+}
+
+/* БЭМ
+Б - блок
+Э - элемент
+М - модификатор */
+
+/* .defeat {
+  background: url(asserts/sprite.png) no-repeat;
+  background-position: -323px -85px;
+  height: 75px;
+  width: 75px;
+  margin-top: 5px;
+} */
+
+.smile {
+  height: 50px;
+  width: 55px;
+  /* margin-top: 5px; */
+  background-color: var(--primary-color);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  /* border-radius: 20%; */
+  /* border: 1px solid gray; */
+  /* width: 80%; */
+  max-width: 550px;
+  /* padding: 1em; */
+  border-radius: 10px;
+  /* background: rgb(100,100,100) radial-gradient(circle at 0 0, rgba(255,255,255,.65), rgba(255,255,255,.35)); */
+  box-shadow:
+   inset rgba(0,0,0,.5) -3px -3px 8px,
+   inset rgba(255,255,255,.9) 3px 3px 8px,
+   rgba(0,0,0,.8) 3px 3px 8px -3px;
+}
+
+.smile:hover {
+  cursor: pointer;
+}
+.smile:active {
+  box-shadow: 
+    inset rgba(0,0,0,.6) 0 -3px 8px, 
+    inset rgba(252,255,255,.7) 0 3px 8px, 
+    rgba(0,0,0,.8) 0 3px 8px -3px;
+}
+
+/* -13px 9px 3px -5px rgba(34, 60, 80, 0.59); */
+
+.defeat {
+  background-image: url(asserts/sadegg.png);
+}
+
+.playing {
+  background-image: url(asserts/cool2.png);
+}
+
+.start-clicked {
+  background-color: #b2a478;
+}
+
+.win {
+  background-image: url(asserts/coolegg.png);
+}
+
+footer {
+  background-color: #666;
+  margin-top: 4px;
+  height: 25px;
+  border: 10px double;
+  display: flex;
+  justify-content: flex-end;
+}
