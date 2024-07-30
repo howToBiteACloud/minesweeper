@@ -79,7 +79,7 @@ function game(rows = 10, columns = 10, bombs = 10) {
 
     openedCells = openedCells + openedCellsByClick;
 
-    // победа?_____________________________________________________________________________!!!!!!!!
+    // победа?___________________________________________________________________________!!!!!!!!
 
     if (isDefeat(table, x, y)) {
       losing();
@@ -114,17 +114,7 @@ function game(rows = 10, columns = 10, bombs = 10) {
     changeBombsCounter(bombsCounter);
   };
 
-  // tbody.oncontextmenu = function(event) {
 
-  //   // убираем встроенное контекстное меню:
-  //   event.preventDefault();
-    
-  //   if (event.target.nodeName !== 'TD') return;
-  
-  //   const [x, y] = getPosition(event.target);
-
-  //   toggleFlag(table, x, y);
-  // };
   tbody.addEventListener('click', clickHandler);
   tbody.addEventListener('contextmenu', contextHandler);
 
@@ -243,6 +233,7 @@ function main() {
       }
     },
   ]);
+
   const form = new FormGroup({
     height: heightControl,
     width: widthControl,
@@ -311,10 +302,10 @@ function main() {
   widthControl.valueChanges(() => {
     bombsControl.updateValueAndValidity();
   });
+
   heightControl.valueChanges(() => {
     bombsControl.updateValueAndValidity();
   });
-
 
   // specHeight.value = customOptions.height;
   // specWidth.value = customOptions.width;
@@ -368,8 +359,6 @@ function main() {
 
   button.addEventListener('click', restartHandler);
 }
-
-
 
 main();
 
@@ -447,7 +436,6 @@ function getPosition(tdElement) {
 }
 
 // function openCell(table, x, y) {
-
   
 //   // TODO: переписать через switch
 //   if (table[x][y] === 'bomb') {
@@ -547,6 +535,7 @@ function openGroupCells(table, x, y) {
       if (isOpened(table, i, j)) continue;
 
       openedCells += openCell(table, i, j);
+
       // if (table[i][j] !== 0) {
       //   cell.classList.add('value',`value_${table[i][j]}`);
       // }
@@ -559,7 +548,6 @@ function openGroupCells(table, x, y) {
 
   return openedCells;
 }
-
 
 function getRandomNumber(from, to) {
   // Должна вернуть случайное число от 'from' до 'to'
@@ -594,8 +582,6 @@ function fillСells(table, row, column, n) {
     }
   }
 }
-
-
 
 function isBomb(cell) {
   return cell.value === -1;
@@ -677,9 +663,6 @@ function startTimer(table, x, y) {
 
   return timerId;
 }
-
-/*________________________сейчас_______________________*/
-
 
 function removeTableCells() {
   const tbodyElements = new Array(...tbody.children);
