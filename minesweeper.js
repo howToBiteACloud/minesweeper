@@ -65,8 +65,6 @@ function game(rows = 10, columns = 10, bombs = 10) {
     
     const [x, y] = getPosition(event.target);
     
-    console.log(table[x][y]);
-
     if (isOpened(table, x, y)) return;
 
     if (openedCells === 0) {
@@ -216,7 +214,6 @@ class FormControl {
   listenInputChange() {
     this.element.onchange = event => {
         const value = event.target.value;
-        // console.log(event);
         this.setValue(+value);
       };
   }
@@ -308,7 +305,6 @@ function main() {
   }
 
   form.valueChanges(value => {
-    console.log(value);
     changeLevelHandler('special');
   });
 
