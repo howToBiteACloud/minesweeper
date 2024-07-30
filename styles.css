@@ -310,8 +310,6 @@ td:hover:not(.value):not(.bomb_clicked) {
 }
 .counter-value_- {
   background-image: url(asserts/minus.png);
-  background-position-x: center;
-  background-size: 29px 61px;
 }
 .counter-value_ {
   background-position: -488px -6px;
