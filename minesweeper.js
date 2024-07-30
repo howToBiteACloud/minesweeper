@@ -114,7 +114,6 @@ function game(rows = 10, columns = 10, bombs = 10) {
     changeBombsCounter(bombsCounter);
   };
 
-
   tbody.addEventListener('click', clickHandler);
   tbody.addEventListener('contextmenu', contextHandler);
 
@@ -307,56 +306,6 @@ function main() {
     bombsControl.updateValueAndValidity();
   });
 
-  // specHeight.value = customOptions.height;
-  // specWidth.value = customOptions.width;
-  // specMines.value = customOptions.bombs;
-
-  // specHeight.onchange = function(event) {
-  //   const {target} = event;
-  //   const {value} = target;
-  
-  //   if (value < 3) {
-  //     target.value = 3;
-  //   } else if (value > 100) {
-  //     target.value = 100;
-  //     asyncAlert('Значение высоты не может быть больше 100. Значение изменено на 100');
-  //   }
-
-  //   customOptions.height = target.value;
-  // };
-  
-  // specWidth.onchange = function(event) {
-  //   const {target} = event;
-  //   const {value} = target;
-  
-  //   if (value < 3) {
-  //     target.value = 3;
-  //     asyncAlert('Значение ширины не может быть меньше 3. Значение изменено на 3');
-  //   } else if (value > 100) {
-  //     target.value = 100;
-  //     asyncAlert('Значение ширины не может быть больше 100. Значение изменено на 100');
-  //   }
-
-  //   customOptions.width = target.value;
-  // };
-
-  // specMines.onchange = function(event) {
-  //   const {target} = event;
-  //   const {value} = target;
-  //   const maxBombs = customOptions.height * customOptions.width - 1;
-  
-  //   if (value < 1) {
-  //     target.value = 1;
-  //     asyncAlert('Количество бомб не может быть меньше 1. Значение изменено на 1');
-  //   } else if (value > maxBombs) {
-  //     target.value = maxBombs;
-  //     asyncAlert(`Количество бомб не может быть больше ${maxBombs}. Значение изменено на ${maxBombs}.`);
-  //   }
-
-  //   customOptions.bombs = target.value;
-  //   changeLevelHandler('special');
-  // };
-
   button.addEventListener('click', restartHandler);
 }
 
@@ -434,20 +383,6 @@ function getPosition(tdElement) {
   
   return [rowIndex, columnIndex];
 }
-
-// function openCell(table, x, y) {
-  
-//   // TODO: переписать через switch
-//   if (table[x][y] === 'bomb') {
-//     showBombs(table);
-//   } else {
-//     showCell(table, x, y);
-//   }
-//   if (table[x][y] === 0) {
-//     showCell(table, x, y);
-//     openGroupCells(table, x, y);
-//   }
-// }
 
 function countBombs(table, x, y) {
   let count = 0;
@@ -535,14 +470,6 @@ function openGroupCells(table, x, y) {
       if (isOpened(table, i, j)) continue;
 
       openedCells += openCell(table, i, j);
-
-      // if (table[i][j] !== 0) {
-      //   cell.classList.add('value',`value_${table[i][j]}`);
-      // }
-      // if (table[i][j] === 0) {
-      //   cell.classList.add('value',`value_0`);
-      //   openGroupCells(table, i, j);
-      // }
     }
   }
 
